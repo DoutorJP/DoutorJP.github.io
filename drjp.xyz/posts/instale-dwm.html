@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Como instalar o DWM fácilmente</title>
+		<link rel="icon" href="../images/favicon.png" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="../main.css"/>
+		<meta name="keywords" content="HTML, CSS, free, freesoftware, tech, fsf, Linux, linux, GNU, blog, open source">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<header>
+			<h1>Como instalar o DWM</h1>
+			<ul>
+				<a href="../articles.html">[Artigos]</a>
+				<a href="../about.html">[Sobre]</a>
+				<a href="https://github.com/DoutorJP/">[GitHub]</a>
+			</ul>
+			<hr>
+		</header>
+		<article>
+			<p>29 / 12 / 21</p>
+			<p>O dwm é um gerenciador de janelas que não é muito usado, conhecido por ser complicado de customizar. Porém, é muito versátil, leve e é muito bom para pessoas que estão buscando um desempenho melhor na hora de programar ou usar o terminal.</p>
+			<br>
+			<h2>Instalação</h2>
+			<p><b>[ATENÇÃO, ESTE TUTORIAL APENAS FUNCIONARÁ SE VOCÊ NÃO ESTIVE USANDO UM DISPLAY MANAGER. DESABILITE O DISPLAY MANAGER DO SEU SISTEMA PARA PROSSEGUIR.]</b></p> 
+			<p>Instalar o dwm é facil e rápido</p>
+			<br>
+			<p> O primeiro passo, é ir no <a href="https://dwm.suckless.org/">site do DWM</a> e baixar o arquivo <code>dwm 6.2</code> na seção de Downloads.</p>
+			<p>Com o arquivo <code>.tar.gz</code> baixado, rode:
+			<br>
+			<br>
+			<code>tar xvf dwm-6.2.tar.gz</code> 
+			<br>
+			<p>Entre no diretório criado pelo dwm: </p>  
+			<code>cd dwm-6.2/</code>
+			<br>
+			<p>se listarmos o diretório, teremos vários arquivos de codigo-fonte, mas você não precisa fazer isso. O próximo passo, é compilar o dwm, ou seja, transforma-lo de um monte de código para um binário executável. para isso, digite: </p>  
+			<code>make</code>
+			<p>E depois termine a instalação com: </p> 
+			<code>sudo make install</code> 
+			<p>Digite sua senha e a instalação estará completa.</p>
+			<p>Reinicie o computador, e depois faça login em algum <code>tty</code>.
+			<p>Feito isso, você precisará usar o seu editor de preferencia (no meu caso o neovim) para editar o arquivo de inicialização do servidor X: </p>
+			<code>nvim ~/.xinitrc</code>
+			<p>Insira o conteúdo</p>
+			<code>exec dwm &</code>
+			<p>Salve o arquivo, depois, rode <code>startx</code>, e o dwm deverá iniciar com sucesso.</p>
+
+		</article>
+		<footer>
+			<h5>Obrigado por visitar o meu site!</h5>
+			<ul id="ctt">
+				<h5>Contato</h5>
+				<li>email: jpmv14@gmail.com</li>
+				<li>signal: (17)997251471</li>
+				<li>matrix: @doutorjp:matrix.org</li>
+			</ul>
+			<button type="button" onclick="window.location='primeiro-post.html'"> &larr; </button>
+			<button id="button-left" type="button" onclick="window.location='server.html'"> &rarr;</button>
+		</footer>
+	</body>

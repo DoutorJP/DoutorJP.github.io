@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Atualização - Servidor - DRJP</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="../main.css"/>
+		<link rel="icon" href="../images/favicon.png" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<h1>Atualização - Servidor</h1>
+			31 / 12 / 2021
+			<hr>
+		</header>
+		<main>
+			<img src="../images/openbsd3.png" src="openbsd1" class="bsd1"/>
+			<article>
+				<p>Há dois dias eu migrei o servidor do computador da minha irmã para um ThinkPad R50 que eu consegui reviver graças ao poder do OpenBSD: Um sístema operácional poderoso e extremamente seguro, que pode rodar em apenas 32MB de ram: 
+
+				<section style="text-align: justify; padding: 5% 10%">
+					<p>"The minimal configuration to install the system is 32MB of RAM and
+					at least 250MB of disk space to accommodate the `base' set.
+					To install the entire system, at least 600MB of disk are required,
+					and to run X or compile the system, more RAM is recommended." 
+					</p><a href="https://ftp.openbsd.org/pub/OpenBSD/6.3/i386/INSTALL.i386">INSTALL.i386</a>
+				</section>
+				<p>Eu cheguei a considerar usar o FreeBSD ou até mesmo o NetBSD (Este ultimo pode rodar em 8MB de ram: <a href="https://www.netbsd.org/ports/i386/hardware.html">NetBSD/i386 Supported Hardware</a>), mas foi o OpenBSD que me chamou a atenção por ter um equilibrio muito bom entre performance e segurança, muita segurança.</p>
+				<p>A instalação foi relativamente fácil e rápida. O maior problema foi o servidor. usando o python, pude fácilmente iniciar um servidor local http, mas tive muitos problemas quando eu fui usar ele como web-server: usei o nginx como servidor, e consegui detectar meu blog fácilmente, mas para a minha surpresa, eu tinha que acessar o roteador para liberar a porta 80 e tornar o servidor público, mas, meu roteador não é meu, e por consequência, não consegui acessá-lo, até o momento dá escrita deste post.</p>
+			</article>
+		</main>
+		<footer>
+			<h5>Obrigado por visitar o meu site!</h5>
+			<ul id="ctt">
+				<h5>Contato</h5>
+				<li>email: jpmv14@gmail.com</li>
+				<li>signal: (17)997251471</li>
+				<li>matrix: @doutorjp:matrix.org</li>
+			</ul>
+			<button type="button" onclick="window.location='instale-dwm.html'"> &larr; </button>
+			<button id="button-left" type="button" onclick="window.location=""> &rarr;</button>
+		</footer>
+	</body>
+</html>
