@@ -96,3 +96,35 @@ a:hover {
   margin-right: auto;
   width: 50%;
 }
+#navbarul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  overflow: hidden;
+}
+nav a {
+  color: #24d35e;
+  float: right;
+  padding: 0px 13px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+nav li {
+  text-align: left;
+}
+
+#logo {
+  background-color: #000000; /* Black */
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+  margin-left: 10px;
+  color: White;
+
+}
