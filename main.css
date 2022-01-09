@@ -5,6 +5,7 @@ html {
   text-align: right;
   padding: 0px;
   margin: 0px;
+  scroll-behavior: smooth;
 }
 header {
   background-color: black;
@@ -100,6 +101,7 @@ a:hover {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: block;
 }
 nav {
   overflow: hidden;
@@ -127,4 +129,35 @@ nav li {
   margin-left: 10px;
   color: White;
 
+}
+#main-content {
+}
+
+#link-to-main {
+  position: absolute;
+  transform: translateY(-10%);
+  text-align: right;
+}
+main {
+  padding: 0% 5%;
+}
+#util {
+  width: 60%;
+  padding: 1% 5% 10% 2%;
+  border: 5px solid gray;
+  margin: 10%;
+}
+#mint-logo {
+  width: 50%;
+  transform: translateY(-50%);
+}
+#tut {
+  margin: 05%;
+  width: 90%;
+}
+#caution {
+  width: 60%;
+  padding: 1% 5% 2% 2%;
+  border: 5px solid red;
+  margin: 10%;
 }
