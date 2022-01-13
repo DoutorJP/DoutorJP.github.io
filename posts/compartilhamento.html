@@ -1,0 +1,77 @@
+<html>
+  <head>
+		<title>Compartilhamento de arquivos símples em Sístemas *UNIX</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="../main.css"/>
+		<link rel="icon" href="../images/favicon.png" type="image/x-icon">
+		<meta name="keywords" content="HTML, CSS, free, freesoftware, tech, fsf, Linux, linux, GNU, blog, open source">
+  </head>
+  <body>
+      <nav>
+        <ul id="navbarul">
+        <button id="logo" type="button" onclick="window.location='../index.html'"><b>DoutorJP</b></button>
+        <li><a id="link-to-main" href="#main-content">Pular para o conteúdo</a>
+        </ul>
+      </nav>
+      <header>
+<h1>Compartilhamento de arquivos símples em Sístemas *UNIX</h1>
+            <p style="text-align: center;">13 / 01 / 2022</p>
+			<hr>
+			<br>
+              <div id="tabela">
+              <h4>Tabela de conteúdos</h4>
+            <ul>
+              <li><a href="#sftp">Sftp</a></li>
+              <li><a href="#rsync">Rsync</a></li>
+              <li><a href="#python">Python</a></li>
+            </ul>
+              </div>
+			<hr>
+      </header>
+      <main id="main-content">
+        <article>
+          <p>Existem vários jeitos de  transferir arquivos na mesma rede entre dois computadores unix. Hoje eu irei mostrar a você alguns.</p>
+          <div id="sftp">
+            <h2>SFTP</h2>
+            <p>Um dos jeitos mais seguros de transferir arquivos é usar o <code>sftp</code>, um protocolo ftp melhorado, que significa <code>Secure File Transfer Protocol</code> </p> 
+            <h3>Uso</h3>
+            <p>Toda a documentação do sftp pode ser conferida com o manual: <code>man sftp</code></p> 
+            <p>A primeira coisa que você precisa saber para usar o sftp, é o ip e o usuário da máquina que está o arquivo na qual quer baixar, ou na que quer transferir, no caso eu vou usar meu servidor com ip local: <code>192.168.0.109</code></p>
+            <br>
+            <p>A síntaxe do sftp é muito simples: <code>sftp usuário@ip:local/do/arquivo ~/destino</code></p>
+            <p>No meu caso fica assim: </p>
+            <code>sftp anon@192.168.0.109:arquivo ~/</code>
+            <p>O comando acima, esta falando que: do usuario <code>anon</code> no endereço <code>192.168.0.109</code> copie o arquivo <code>arquivo</code> para o destino em meu computador.</p>
+          </div>
+          <div id="rsync">
+            <h2>Rsync</h2>
+            <p>A síntaxe no rsync  é muito parecida com a do sftp, mas ele tem um diferencial: ele também sincroníza arquivos, sendo uma alternativa simples ao git.</p>
+            <h3>Uso: </h3>
+            <p>Para transferir de uma maquina para a minha: </p> 
+            <code>rsync -av anon@192.168.0.109:arquivo ~/local</code> 
+            <p>Para transferir da minha maquina para outra: </p>
+            <code>rsync -av arquivo anon@192.168.0.109:~/destino</code>
+            <p>Essa síntaxe reversa(acíma) pode ser usada também no sftp.</p>
+          </div>
+          <div id="python">
+            <h2>Python</h2>
+            <p>Esse ultimo é um pouco interessante: você vai rodar um servidor http com python na sua máquina que usa como servidor. depois, você pode abrir o seu navegador e colocar o ip e a porta do servidor, e pronto!</p>
+            <p>Entre no diretório da sua maquina que estão os arquivos, no caso eu irei entrar em <code>~/general/</code> e rodar o comando: <code>python3 -m http.server 8080</code> isso abrirá um servidor na porta 8080. se você entrar no seu navegador, digitar se ip local, e a <code>:porta</code>, seus arquivos estarão lá.</p> 
+            <img src="../images/server.gif" alt="server" style="padding: 0% 0% 0% 15%; width: 70%"> 
+            <p>Você pode colocar esse comando no seu <code>~/.profile</code> para ele iniciar toda vez que seu computador for ligado.</p>
+          </div>
+        </article>
+      </main>
+		<footer>
+			<h5>Obrigado por visitar o meu site!</h5>
+			<ul id="ctt">
+				<h5>Contato</h5>
+				<li>email: jpmv14@gmail.com</li>
+				<li>signal: (17)997251471</li>
+				<li>matrix: @doutorjp:matrix.org</li>
+			</ul>
+			<button type="button" onclick="window.location='instalar-artix.html'"> &larr; </button>
+			<button id="button-left" type="button" onclick="window.location=''"> &rarr;</button>
+		</footer>
+	</body>
+</html>
