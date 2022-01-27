@@ -36,7 +36,7 @@ article {
 hr {
   width: 50%;
   color: #24d35e;
-  margin: 1% 0% -15% -3.5%;
+  /*margin: 1% 0% -15% -3.5%;*/
 }
 
 h1 {
@@ -67,8 +67,8 @@ footer {
   margin: 0% 0% 1% 5%;
 }
 #ctt {
+  padding-left: 150px;
   text-align: left;	
-  transform: translateX(-2%);
 }
 #gentoo {
   width: 50px;

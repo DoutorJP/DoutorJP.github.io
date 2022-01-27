@@ -1,216 +1,216 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Como instalar o Artix Linux em UEFI OpenRC 2022</title>
-		<meta charset="UTF-8"/>
-		<link rel="stylesheet" type="text/css" href="../main.css"/>
-		<link rel="icon" href="../images/favicon.png" type="image/x-icon">
-		<meta name="keywords" content="HTML, CSS, free, freesoftware, tech, fsf, Linux, linux, GNU, blog, open source">
-	</head>
-	<body>
-      <nav>
-        <ul id="navbarul">
-        <button id="logo" type="button" onclick="window.location='../index.html'"><b>DoutorJP</b></button>
-        <li><a id="link-to-main" href="#main-content">Pular para o conteúdo</a>
-        </ul>
-      </nav>
-		<header>
-            <h1>Como instalar o Artix Linux em UEFI 2022</h1>
-            <p style="text-align: center;">09 / 01 / 2022</p>
-			<hr>
-            <img src="../images/artix.png" alt="artixlogo" style="padding: 2% 40%;"/>
-			<br>
-              <div id="tabela">
-              <h4>Tabela de conteúdos</h4>
-            <ul>
-              <li><a href="#teclado">Teclado</a></li>
-              <li><a href="#particionamento">Particionamento</a></li>
-              <li><a href="#formatacao">Formatação</a></li>
-              <li><a href="#mount">Montar partições</a></li>
-              <li><a href="#internet">Conectar à Internet</a></li>
-              <li><a href="#sistema">Instalando a base do Sístema</a></li>
-              <li><a href="#kernel">Escolhendo e instalando um Kernel</a></li>
-              <li><a href="#configbase">Configurando a base do sístema</a></li>
-            </ul>
-              </div>
-			<hr>
-		</header>
-        <main id="main-content">
-          <article>
-            <p>Hoje irei mostrar para vocês, como instalar o Artix Linux, de modo UEFI.</p>
-            <div id="teclado">
-              <h2>Teclado</h2>
-              <p>A primeira parte da nossa instalação será escolher o nosso layout do teclado.</p>
-              <code>loadkeys br-abnt2</code>
-              <p>Isso permite que você selecione o layout do seu teclado apenas nessa seção, ou seja, quando reiniciarmos ele irá voltar ao original.</p>
-              <p>Um mapa de teclado persistente pode ser configurado em <code>/etc/vconsole.conf</code>. Devemos usar a variavel KEYMAP para especificar o mapa de teclado, pois se ela estiver vazia ou não for definida, o mapa será automáticamente no formato <code>us</code> </p> 
-              <code>
-                  /etc/vconsole.conf
-                  <br>
-                  KEYMAP=br-abnt2
+        <head>
+                <title>Como instalar o Artix Linux em UEFI OpenRC 2022</title>
+                <meta charset="UTF-8"/>
+                <link rel="stylesheet" type="text/css" href="../main.css"/>
+                <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+                <meta name="keywords" content="HTML, CSS, free, freesoftware, tech, fsf, Linux, linux, GNU, blog, open source">
+        </head>
+        <body>
+                <nav>
+                        <ul id="navbarul">
+                                <button id="logo" type="button" onclick="window.location='../index.html'"><b>DoutorJP</b></button>
+                                <li><a id="link-to-main" href="#main-content">Pular para o conteúdo</a>
+                        </ul>
+                </nav>
+                <header>
+                        <h1>Como instalar o Artix Linux em UEFI 2022</h1>
+                        <p style="text-align: center;">09 / 01 / 2022</p>
+                        <hr>
+                        <img src="../images/artix.png" alt="artixlogo" style="padding: 2% 40%;"/>
+                        <br>
+                        <div id="tabela">
+                                <h4>Tabela de conteúdos</h4>
+                                <ul>
+                                        <li><a href="#teclado">Teclado</a></li>
+                                        <li><a href="#particionamento">Particionamento</a></li>
+                                        <li><a href="#formatacao">Formatação</a></li>
+                                        <li><a href="#mount">Montar partições</a></li>
+                                        <li><a href="#internet">Conectar à Internet</a></li>
+                                        <li><a href="#sistema">Instalando a base do Sístema</a></li>
+                                        <li><a href="#kernel">Escolhendo e instalando um Kernel</a></li>
+                                        <li><a href="#configbase">Configurando a base do sístema</a></li>
+                                </ul>
+                        </div>
+                        <hr>
+                </header>
+                <main id="main-content">
+                        <article>
+                                <p>Hoje irei mostrar para vocês, como instalar o Artix Linux, de modo UEFI.</p>
+                                <div id="teclado">
+                                        <h2>Teclado</h2>
+                                        <p>A primeira parte da nossa instalação será escolher o nosso layout do teclado.</p>
+                                        <code>loadkeys br-abnt2</code>
+                                        <p>Isso permite que você selecione o layout do seu teclado apenas nessa seção, ou seja, quando reiniciarmos ele irá voltar ao original.</p>
+                                        <p>Um mapa de teclado persistente pode ser configurado em <code>/etc/vconsole.conf</code>. Devemos usar a variavel KEYMAP para especificar o mapa de teclado, pois se ela estiver vazia ou não for definida, o mapa será automáticamente no formato <code>us</code> </p> 
+                                        <code>
+                                                /etc/vconsole.conf
+                                                <br>
+                                                KEYMAP=br-abnt2
 
-              </code>
-            <div id="particionamento">
-              <h2>Particionamento</h2>
-              <p>Agora é a parte mais arriscada da instalação, o particionamento. A primeira coisa que você ira fazer, é listar os seus discos, usando </p>
-              <code>lsblk</code>
-              <p>Provavelmente oque apareceu foram dois discos, analize o tamanho deles, o menor, é provavelmente o seu USB, e o maior é o seu HD real, no qual nós iremos instalar o sístema, no meu caso, ele é o <code>/dev/sda</code> 
-              <p>Se você tem muitos discos, é conveniente usar o fdisk para listalos, e escolher o certo: <code>fdisk -l</code></p>
-              <br>
-              <code>cfdisk /dev/sda</code>
-              <br>
-              <img id="gpt" src="images/gpt.jpg" alt="gpt" />
-              <div id="caution">
-                <h3>Cuidado!</h3>
-                <p>Verifique se fez backup de arquivos ímportantes do seu HD, pois eles serão excluidos nos próximos passos.</p>
-              </div>
-              <p>Use as setas do seu teclado e a tecla enter para criar 3 partições no cfdisk: </p>
-              <ul>
-                <li>/dev/sda1: Escolha pelo menos 512Mb de espaço (UEFI)</li>
-                <li>/dev/sda2: Escolha pelo menos 10GB de espaço (root)</li>
-                <li>/dev/sda3: Escolha todo o espaço restante (home)</li>
-              </ul>
-              <p>Se quiser coloque uma LABEL nas partições, mas isso é puramente opcional.</p>
-              <p>Agora liste as partições novamente para ter certeza de que elas foram gravadas corretamente</p>
-              <code>lsblk</code>
-            </div> 
-            <div id="formatacao">
-              <h2>Formatação</h2>
-              <p>Agora, é hora de formatar as partições, ou seja, deixa-las prontas para instalar o sistema nelas.</p>
-              <p>A primeira partição a ser formatada deve ser a UEFI, e ela precisa ser formatada com o <i>filesystem FAT</i>.</p>
-              <br>
-              <code>mkfs.fat -F32 /dev/sda1</code>
-              <br>
-              <p>As outras duas devem ser formatadas em qualquer sístema de arquivos linux, como btrfs e ext4, hoje eu irei usar o ext4: </p> 
-              <br>
-              <br>
-              <code>mkfs.ext4 /dev/sda2</code>
-              <br>
-              <code>mkfs.ext4 /dev/sda3</code>
-            </div>
-            <div id="mount">
-              <h2>Montar os discos</h2>
-              <p>Agora é hora de montar os díscos. Primeiro, vamos montar <code>/dev/sda2</code> em <code>/mnt</code>:</p>
-              <br>
-              <code>mount /dev/sda2 /mnt</code>
-              <br>
-              <p>Depois vamos criar a pasta home, que é onde nós iremos colocar nossos arquivos pessoais.</p>
-              <br>
-              <code>mkdir /mnt/home</code>
-              <br>
-              <code>mount /dev/sda3 /mnt/home</code>
-              <br>
-              <p>E se listarmos as partições, veremos algo parecido com isso: </p>
-              <img src="images/lsblk.jpg" alt="lsblk" id="tut"/>
-            </div>
-            <div id="internet">
-              <h2>Conectar à Internet</h2>
-              <p>Uma conexão funcional de internet, é necessária a partir daqui. Se você está usando uma conexão cabeada, que é o recomendado, ela deve ser configurada automáticamente.</p>
-              <p>Mas o wifi deve ser configurado pelo usuário, na qual faremos daqui a pouco. Para verificar se você está conectado a internet, digite: </p>
-              <code>ping -c4 gnu.org</code>
-              <p>A saída deve ser algo parecido com <code>64 bytes from...</code></p> 
-            </div>
-            <div id="sistema">
-              <h2>Instalando a base do Sístema</h2>
-              <p>Nessa instalação, irei usar o OpenRC como init system, pois ele é mais amigável ao usuário.</p>
-              <br>
-              <code> basestrap /mnt base base-devel openrc elogind-openrc wpa_supplicant dhcpcd </code>
-              <br>
-            </div>
-            <div id="kernel">
-              <h2>Escolhendo e Instalando um kernel</h2>
-              <p>O Artix oferece três opções de kernel: linux, linux-lts, e linux-zen. eu recomendo instalar ou o linux normal, ou o linux-lts, na qual tem mais estabilíde.</p> 
-              <br>
-              <code>basestrap /mnt linux linux-firmware</code>
-              <br>
-              <p>Ou</p> 
-              <br>
-              <code>basestrap /mnt linux-lts linux-firmware</code>
-              <br>
-              <p>Agora, use o <code>fstabgen</code> para gerar um arquivo <code>/etc/fstab</code></p>
-              <code>fstabgen -U /mnt >> /mnt/etc/fstab</code>
-              <br>
-              <p>E finalmente, iremos entrar no sistema em si.</p>
-              <br>
-              <code>artix-chroot /mnt</code>
-              <br>
-          </div>
-          <div id="configbase"/>
-            <h2>Configurando a base do sístema</h2>
-            <h3>Relógio do sistema</h3>
-            <p>Para configurar o time zone:</p> 
-            <code>ln -sf /usr/share/zoneinfo/Regiao/Cidade /etc/localtime</code>
-            <p>Não se esqueça de mudar <code>Regiao/Cidade</code>, no meu caso fica: </p>
-            <code>ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime</code>
-            <p>Depois: </p>
-            <code>hwclock --systohc</code>
-            <br>
-            <h3>Localização</h3>
-            <p>Agora, iremos editar um arquivo, para isso, deveremos instalar um editor de texto. para iniciantes eu recomendo instalar o <code>nano</code>, mas eu írei instalar dois, o <code>nvim</code> e o <code>emacs</code>:</p>
-            <code>pacman -S emacs nvim</code>
-            <p>Depois disso, devemos editar o arquivo com: </p>
-            <code>nvim /etc/locale.gen</code>
-            <p>E descomentar a linha da sua localização, no cado a minha é: </p>
-            <code>pt_BR.UTF8 UTF-8</code>
-            <p>E finalmente gerando seu local com locale-gen: </p>
-            <code>locale-gen</code>
-            <h3>Bootloader</h3>
-            <p>É hora de configurar o seu bootloader. tome muito cuidado agora: </p>
-            <code>pacman -S grub os-prober efibootmgr</code>
-            <br>
-            <code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</code>
-            <br>
-            <code>grub-mkconfig -o /boot/grub/grub.cfg</code>
-            <h3>Usúarios</h3>
-            <code>useradd -m usuario</code> 
-            <br>
-            <code>passwd usuario</code>
-            <h3>Configuração de rede</h3>
-            <code>nvim /etc/hostname</code>
-            <br>
-            <code>meuhostname</code>
-            <br>
-            <br>
-            <code>nvim /etc/hosts</code>
-            <br>
-            <br>
-            <code>
-127.0.0.1        localhost
-<br>
- ::1              localhost
- <br>
- 127.0.1.1        meuhostname.localdomain  meuhostname
-            </code>
-            <p>E como estamos usando o openrc, devemos editar o arquivo /etc/conf.d/hostname com o nosso hostname:</p>
-            <code>echo "hostname='meuhostname'" >> /etc/conf.d/hostname</code>
-            <p>E se optou por não instalar o dhcpcd e o wpa_supplicant antes: </p>
-            <code>pacman -S dhcpcd or dhclient</code>
-            <p>Depois devemos instalar e abilitar o connman, que irá gerenciar nossas redes: </p>
-            <code> pacman -S connman-openrc connman-gtk</code>
-            <br>
-            <code> rc-update add connmand</code> 
-            <br>
-            <h3>Reboot</h3>
-            <code>exit</code>
-            <br>
-            <code>umount -R /mnt</code>
-            <br>
-            <code> reboot</code>
-            <br>
-          </div>
-          <p>Pronto! seu sistema está instalado. ainda nessa semana irei postar um tutorial de pós instalação com interface. até!</p>
-          </article>
-        </main>
-		<footer>
-			<h5>Obrigado por visitar o meu site!</h5>
-			<ul id="ctt">
-				<h5>Contato</h5>
-				<li>email: jpmv14@gmail.com</li>
-				<li>signal: (17)997251471</li>
-				<li>matrix: @doutorjp:matrix.org</li>
-			</ul>
-			<button type="button" onclick="window.location='mint20-3.html'"> &larr; </button>
-			<button id="button-left" type="button" onclick="window.location='compartilhamento.html'"> &rarr;</button>
-		</footer>
-    </body>
+                                        </code>
+                                        <div id="particionamento">
+                                                <h2>Particionamento</h2>
+                                                <p>Agora é a parte mais arriscada da instalação, o particionamento. A primeira coisa que você ira fazer, é listar os seus discos, usando </p>
+                                                <code>lsblk</code>
+                                                <p>Provavelmente oque apareceu foram dois discos, analize o tamanho deles, o menor, é provavelmente o seu USB, e o maior é o seu HD real, no qual nós iremos instalar o sístema, no meu caso, ele é o <code>/dev/sda</code> 
+                                                <p>Se você tem muitos discos, é conveniente usar o fdisk para listalos, e escolher o certo: <code>fdisk -l</code></p>
+                                                <br>
+                                                <code>cfdisk /dev/sda</code>
+                                                <br>
+                                                <img id="gpt" src="images/gpt.jpg" alt="gpt" />
+                                                <div id="caution">
+                                                        <h3>Cuidado!</h3>
+                                                        <p>Verifique se fez backup de arquivos ímportantes do seu HD, pois eles serão excluidos nos próximos passos.</p>
+                                                </div>
+                                                <p>Use as setas do seu teclado e a tecla enter para criar 3 partições no cfdisk: </p>
+                                                <ul>
+                                                        <li>/dev/sda1: Escolha pelo menos 512Mb de espaço (UEFI)</li>
+                                                        <li>/dev/sda2: Escolha pelo menos 10GB de espaço (root)</li>
+                                                        <li>/dev/sda3: Escolha todo o espaço restante (home)</li>
+                                                </ul>
+                                                <p>Se quiser coloque uma LABEL nas partições, mas isso é puramente opcional.</p>
+                                                <p>Agora liste as partições novamente para ter certeza de que elas foram gravadas corretamente</p>
+                                                <code>lsblk</code>
+                                        </div> 
+                                        <div id="formatacao">
+                                                <h2>Formatação</h2>
+                                                <p>Agora, é hora de formatar as partições, ou seja, deixa-las prontas para instalar o sistema nelas.</p>
+                                                <p>A primeira partição a ser formatada deve ser a UEFI, e ela precisa ser formatada com o <i>filesystem FAT</i>.</p>
+                                                <br>
+                                                <code>mkfs.fat -F32 /dev/sda1</code>
+                                                <br>
+                                                <p>As outras duas devem ser formatadas em qualquer sístema de arquivos linux, como btrfs e ext4, hoje eu irei usar o ext4: </p> 
+                                                <br>
+                                                <br>
+                                                <code>mkfs.ext4 /dev/sda2</code>
+                                                <br>
+                                                <code>mkfs.ext4 /dev/sda3</code>
+                                        </div>
+                                        <div id="mount">
+                                                <h2>Montar os discos</h2>
+                                                <p>Agora é hora de montar os díscos. Primeiro, vamos montar <code>/dev/sda2</code> em <code>/mnt</code>:</p>
+                                                <br>
+                                                <code>mount /dev/sda2 /mnt</code>
+                                                <br>
+                                                <p>Depois vamos criar a pasta home, que é onde nós iremos colocar nossos arquivos pessoais.</p>
+                                                <br>
+                                                <code>mkdir /mnt/home</code>
+                                                <br>
+                                                <code>mount /dev/sda3 /mnt/home</code>
+                                                <br>
+                                                <p>E se listarmos as partições, veremos algo parecido com isso: </p>
+                                                <img src="images/lsblk.jpg" alt="lsblk" id="tut"/>
+                                        </div>
+                                        <div id="internet">
+                                                <h2>Conectar à Internet</h2>
+                                                <p>Uma conexão funcional de internet, é necessária a partir daqui. Se você está usando uma conexão cabeada, que é o recomendado, ela deve ser configurada automáticamente.</p>
+                                                <p>Mas o wifi deve ser configurado pelo usuário, na qual faremos daqui a pouco. Para verificar se você está conectado a internet, digite: </p>
+                                                <code>ping -c4 gnu.org</code>
+                                                <p>A saída deve ser algo parecido com <code>64 bytes from...</code></p> 
+                                        </div>
+                                        <div id="sistema">
+                                                <h2>Instalando a base do Sístema</h2>
+                                                <p>Nessa instalação, irei usar o OpenRC como init system, pois ele é mais amigável ao usuário.</p>
+                                                <br>
+                                                <code> basestrap /mnt base base-devel openrc elogind-openrc wpa_supplicant dhcpcd </code>
+                                                <br>
+                                        </div>
+                                        <div id="kernel">
+                                                <h2>Escolhendo e Instalando um kernel</h2>
+                                                <p>O Artix oferece três opções de kernel: linux, linux-lts, e linux-zen. eu recomendo instalar ou o linux normal, ou o linux-lts, na qual tem mais estabilíde.</p> 
+                                                <br>
+                                                <code>basestrap /mnt linux linux-firmware</code>
+                                                <br>
+                                                <p>Ou</p> 
+                                                <br>
+                                                <code>basestrap /mnt linux-lts linux-firmware</code>
+                                                <br>
+                                                <p>Agora, use o <code>fstabgen</code> para gerar um arquivo <code>/etc/fstab</code></p>
+                                                <code>fstabgen -U /mnt >> /mnt/etc/fstab</code>
+                                                <br>
+                                                <p>E finalmente, iremos entrar no sistema em si.</p>
+                                                <br>
+                                                <code>artix-chroot /mnt</code>
+                                                <br>
+                                        </div>
+                                        <div id="configbase"/>
+                                                <h2>Configurando a base do sístema</h2>
+                                                <h3>Relógio do sistema</h3>
+                                                <p>Para configurar o time zone:</p> 
+                                                <code>ln -sf /usr/share/zoneinfo/Regiao/Cidade /etc/localtime</code>
+                                                <p>Não se esqueça de mudar <code>Regiao/Cidade</code>, no meu caso fica: </p>
+                                                <code>ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime</code>
+                                                <p>Depois: </p>
+                                                <code>hwclock --systohc</code>
+                                                <br>
+                                                <h3>Localização</h3>
+                                                <p>Agora, iremos editar um arquivo, para isso, deveremos instalar um editor de texto. para iniciantes eu recomendo instalar o <code>nano</code>, mas eu írei instalar dois, o <code>nvim</code> e o <code>emacs</code>:</p>
+                                                <code>pacman -S emacs nvim</code>
+                                                <p>Depois disso, devemos editar o arquivo com: </p>
+                                                <code>nvim /etc/locale.gen</code>
+                                                <p>E descomentar a linha da sua localização, no cado a minha é: </p>
+                                                <code>pt_BR.UTF8 UTF-8</code>
+                                                <p>E finalmente gerando seu local com locale-gen: </p>
+                                                <code>locale-gen</code>
+                                                <h3>Bootloader</h3>
+                                                <p>É hora de configurar o seu bootloader. tome muito cuidado agora: </p>
+                                                <code>pacman -S grub os-prober efibootmgr</code>
+                                                <br>
+                                                <code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</code>
+                                                <br>
+                                                <code>grub-mkconfig -o /boot/grub/grub.cfg</code>
+                                                <h3>Usúarios</h3>
+                                                <code>useradd -m usuario</code> 
+                                                <br>
+                                                <code>passwd usuario</code>
+                                                <h3>Configuração de rede</h3>
+                                                <code>nvim /etc/hostname</code>
+                                                <br>
+                                                <code>meuhostname</code>
+                                                <br>
+                                                <br>
+                                                <code>nvim /etc/hosts</code>
+                                                <br>
+                                                <br>
+                                                <code>
+                                                        127.0.0.1        localhost
+                                                        <br>
+                                                        ::1              localhost
+                                                        <br>
+                                                        127.0.1.1        meuhostname.localdomain  meuhostname
+                                                </code>
+                                                <p>E como estamos usando o openrc, devemos editar o arquivo /etc/conf.d/hostname com o nosso hostname:</p>
+                                                <code>echo "hostname='meuhostname'" >> /etc/conf.d/hostname</code>
+                                                <p>E se optou por não instalar o dhcpcd e o wpa_supplicant antes: </p>
+                                                <code>pacman -S dhcpcd or dhclient</code>
+                                                <p>Depois devemos instalar e abilitar o connman, que irá gerenciar nossas redes: </p>
+                                                <code> pacman -S connman-openrc connman-gtk</code>
+                                                <br>
+                                                <code> rc-update add connmand</code> 
+                                                <br>
+                                                <h3>Reboot</h3>
+                                                <code>exit</code>
+                                                <br>
+                                                <code>umount -R /mnt</code>
+                                                <br>
+                                                <code> reboot</code>
+                                                <br>
+                                        </div>
+                                        <p>Pronto! seu sistema está instalado. ainda nessa semana irei postar um tutorial de pós instalação com interface. até!</p>
+                        </article>
+                </main>
+                <footer>
+                        <h5>Obrigado por visitar o meu site!</h5>
+                        <ul id="ctt">
+                                <h5>Contato</h5>
+                                <li>email: jpmv14@gmail.com</li>
+                                <li>signal: (17)997251471</li>
+                                <li>matrix: @doutorjp:matrix.org</li>
+                        </ul>
+                        <button type="button" onclick="window.location='mint20-3.html'"> &larr; </button>
+                        <button id="button-left" type="button" onclick="window.location='compartilhamento.html'"> &rarr;</button>
+                </footer>
+        </body>
 </html>
