@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>Como burlar o banimento do Telegram</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Meu website pessoal, onde posto tutoriais">
+    <meta name="keywords" content="GNU, Linux, programming">
+    <meta name="author" content="João Pedro">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../main.css"/>
+  </head>
+  <body>
+    <nav>
+      <a href="../articles.html">[Artigos]</a>
+      <a href="../about.html">[Sobre]</a>
+      <a href="https://github.com/DoutorJP/">[GitHub]</a>
+      <a href="https://www.youtube.com/channel/UCv4EtfpYNjMEZ0swtG1iUuA">[Vídeos]</a>
+    </nav>
+    <main>
+      <h1>Como burlar o banimento do Telegram no Brasil</h1>
+      <hr>
+      <img src="../images/telegram.png" alt="telegram.png" style="width: 17%; margin: 5% 0px -5% 43%"/>
+      <article>
+	<p>
+	  Mesmo não gostando do aplicativo, por motivos pessoais (O software não é seguro, e vende seus dados do mesmo jeito que o whatsapp vende, além de ser software proprietário e de código fechado), o Telegram é um software muito importante para a liberdade de expressão no Brasil, já que muitos grupos, buscam usar o Telegram poís ele não bane comunidades baseado em Escolhas políticas. Porém, o <a href="https://portal.stf.jus.br/centraldocidadao/">STF</a>, está ameaçando banir o Telegram no Brasil, com o intuito de "Impedir a propagação de Fake News", poís o Telegram, em um raro ato de respeito as usuários, decidiu não dar os dados dos usuários ao STF. Mas, e se o STF decidir banir o Telegram?
+	</p>
+	<h2>Rede Tor</h2>
+	<p>Um fato, é que é impossível banir as pessoas de usar a rede tor, e é possível usar o tor como um proxy para usar o Telegram anônimamente.</p>
+	<h2>Celulares Android</h2>
+	<p>Em celulares Android, é possível usar o Orbot: uma plataforma para roteamento <i>onion</i> para Android. o Orbot está disponível no <a href="https://guardianproject.info/fdroid/repo/">F-Droid</a> e na <a href="https://play.google.com/store/apps/details?id=org.torproject.android">Google Play Store</a>.</p>
+	<h3>Orbot</h3>
+	<p>
+	  Aperte na "Cebola" na tela, e espere a mensagem "Connected to the Tor network" aparecer (Você deverá se connectar a rede Tor toda vez que for usar o Telegram).</p>
+	<h3>Configurando</h3>
+	<p>Você pode clicar nesse <a href="https://t.me/socks?server=127.0.0.1&port=9050">Link</a> e se conectar.</p>
+	<h2>Sístemas Linux</h2>
+	<p>Na sua distribuição Linux de preferencia, você deverá, primeiro de tudo, baixar a Telegram Desktop, para poder prosseguir com este tutotial.<p>
+	  <h3>Instalando o Tor</h3>
+	<p>
+	  Primeiro de tudo, é instalar o proxy do tor, de acordo com a sua distribuição<br>
+	  <code>
+	    Gentoo: emerge --ask net-vpn/tor<br>
+	    Arch e derívados: pacman -S tor<br>
+	    Debian, Ubuntu e derivados: apt install tor<br>
+	    Fedora: dnf install tor<br>
+	  </code><br>
+	  Agora, deverá iniciar o Tor no seu init system de preferência. A maioria das distros, usa o SystemD: <code>sudo systemctl enable --now tor</code>, para OpenRC: <code>rc-service tor start</code>
+	</p>
+	<h3>Configurando</h3>
+	<p>Ou você pode clicar no mesmo link que no android, ou indo em  Menu > Configurações > Avançado > Tipo de conexão > Adicionar Proxy, no Telegram, e deixar deste jeito: <br><img src="../images/proxy-telegram.png" alt="proxy configurado imagem"/> e depois selecionar o proxy "SOCKS5".</p>
+	<p>Pronto! agora seu telegram está configurado e você poderá continuar usando mesmo se seu país bani-lo!</p>
+	</article>
+    </main>
+    <footer>
+      <h5>Obrigado por visitar o meu site!</h5>
+      <button type="button" onclick="window.location='emacs.html'"> &larr; </button>
+        </footer>
+  </body>
+</html>
