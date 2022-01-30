@@ -24,8 +24,7 @@ body {
 
 article {
   background-color: black;
-  margin: 50px;
-  border-radius: 25px;
+  margin: 35px 0px 0px 0px;
   font-size: 18px;
   padding: 25px;
 }
