@@ -17,8 +17,9 @@ header {
 
 body {
   text-align: justify;
-  font-family: 'PT Sans', sans-serif;
-  font-family: 'Poppins', sans-serif;
+/*  font-family: 'PT Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;*/
+  font-family: 'Iosevka', sans-serif;
   color: whitesmoke;
 }
 
