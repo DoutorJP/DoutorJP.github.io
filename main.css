@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Poppins:wght@200;300&display=swap');
+@import url('https://raw.githubusercontent.com/fontsource/fontsource/main/packages/iosevka/index.css');
 html {
   position: relative;
   min-height: 100%;
@@ -17,8 +17,6 @@ header {
 
 body {
   text-align: justify;
-/*  font-family: 'PT Sans', sans-serif;
-  font-family: 'Poppins', sans-serif;*/
   font-family: 'Iosevka', sans-serif;
   color: whitesmoke;
 }
