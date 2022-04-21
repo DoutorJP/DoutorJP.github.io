@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Servidor httpd com OpenBSD - DRJP</title>
+		<meta charset="UTF-8"/>
+		<meta name="description" content="Neste Tutorial, irei ensinar a você como montar um servidor OpenBSD básico usando o httpd, uma ferramenta segura e nativa do OpenBSD">
+		<meta name="keywords" content="Servidor, OpenBSD, bsd, httpd">
+		<meta name="author" content="Joao Pedro">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../main.css"/>
+		<link rel="icon" href="../images/favicon.png" type="image/x-icon">
+	</head>
+	<body>
+		<nav>
+			<ul id="navbarul">
+				<a href="../galeria.html">[ Galeria ] </a>
+				<a href="../projects.html">[ Projectos ] </a>
+				<a href="doutorjp.github.io"> [ Home ] </a>
+			</ul>
+		</nav>
+		<header>
+			<h1>Servidor Web básico usando OpenBSD e httpd</h1>
+			<hr>
+		</header>
+		<main>
+		<article id="main-content">
+			<div id="intro">
+				<h2>Introdução</h2>
+				<p>O OpenBSD vem com um webserver proprio chamado httpd. O httpd é um webserver bem básico que suporta FastCGI e TLS.<br>Para este projeto, irei utilizar o OpenBSD 7.0 e como hardware um antigo IBM ThinkPad R50 (Pentium M, 510mb RAM, 2003). </p>
+			</div>
+			<div id="config">
+				<h2>Configuração</h2>
+				<p>O arquivo de configuração do httpd fica localizado em /etc/examples/. Você deverá copia-lo como root: <br><code>cp /etc/examples/httpd.conf /etc</code><br>Ou, você pode criar um novo arquivo de configuração e faze-lo parecido com <a href="https://pastebin.com/tb9XHCLc">isso</a>.</p>
+				<p>Agora, vamos criar a raíz do documento: <br><code>mkdir -p /var/www/htdocs/www.example.com</code><br>
+				Checamos a configuração com: <code># httpd -n</code>.
+				e ativamos o daemon:<br><code>rcctl enable httpd<br>rcctl start httpd</code><br>
+				<br>Agora, você pode adicionar uma pagina chamada <code> index.html</code> dentro de /var/www/htdocs/www.example.com/index.html</p>
+			</div>
+			<div>
+				<h2>Testando</h2>
+				<p>Agora é só colocar o IP do seu servidor na barra de URL do seu navegador. Se quiser também poderá configurar o DNS e SSL.	
+		</article>
+		</main>
+		 <footer>
+                        <h5>Obrigado por visitar o meu site!</h5>
+                        <button id="button-left" type="button" onclick="window.location='banimento-telegram.html'"> &rarr;</button>
+                </footer>
+	</body>
+</html>
