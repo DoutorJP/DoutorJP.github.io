@@ -193,3 +193,14 @@ code {
     height: 100%;
     object-fit: cover;
 }
+#postagem {
+	border: 2px solid;
+	padding: 10px;
+	margin: 15px;
+}
+#postagem:hover {
+	background-color: #202020;
+}
+#p-list {
+	 list-style-type: none;
+}
