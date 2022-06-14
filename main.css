@@ -1,4 +1,4 @@
-@import url('https://raw.githubusercontent.com/fontsource/fontsource/main/packages/iosevka/index.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 html {
   position: relative;
   min-height: 100%;
@@ -16,7 +16,7 @@ header {
 
 body {
   text-align: justify;
-  font-family: Georgia,serif;
+  font-family: 'Roboto Mono', monospace;
   color: #c4c4c4;
 }
 
@@ -38,24 +38,24 @@ hr {
 }
 
 h1 {
-  font-family: 'Iosevka', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-size: 250%;
   color: #24d35e;
   margin: 0% 0% 1% -3.5%;
 }
 
 h2 {
-  font-family: 'Iosevka', sans-serif;
+  font-family: 'Roboto Mono', monospace;;
   font-size: 180%;
   color: #24d35e
 }
 
 h4 {
-  font-family: 'Iosevka', sans-serif;
+  font-family: 'Roboto Mono', monospace;;
   font-size: 110%;
 }
 h5 {
-  font-family: 'Iosevka', sans-serif;
+  font-family: 'Roboto Mono', monospace;;
   font-size: 150%;
   color: #24d35e;
 }
