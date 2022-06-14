@@ -5,7 +5,7 @@ html {
   background-color: #151515;
   text-align: right;
   padding: 0px;
-  margin: 0px;
+  margin: 50px 50px;
   scroll-behavior: smooth;
 }
 header {
@@ -203,18 +203,7 @@ code {
 }
 #date {
     color: gray;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+#site-title {
+	font-size: 300%;
 }
