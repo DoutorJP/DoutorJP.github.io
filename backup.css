@@ -216,6 +216,7 @@ code {
 }
 p {
 }
-b{
+mark {
 	color: #B92C25;
+	background-color: none;
 }
