@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  string s;
+  getline(cin, s);
+  if(s.compare("FRIO")==0)
+	cout << 24 << '\n';
+  if(s.compare("MUITO FRIO")==0)
+	cout << 20 << '\n';
+  if(s.compare("EXTREMAMENTE FRIO")==0)
+	cout << 18 << '\n';
+  if(s.compare("QUENTE")==0)
+	cout << 28 << '\n';
+  return 0;
+}
