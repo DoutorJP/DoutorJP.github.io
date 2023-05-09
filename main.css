@@ -93,6 +93,7 @@ button {
 a{
 	color: #0066cc;
 	font-family: 'Crimson Pro', serif;
+	font-size: 140%;
 	text-decoration: none; 
 }
 a:hover {
