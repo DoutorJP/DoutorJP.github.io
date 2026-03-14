@@ -1,196 +1,232 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,700;1,200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200;1,200&display=swap');
+
+/* ─── Custom Properties ─────────────────────────────────────────── */
+:root {
+	--color-bg:        #151515;
+	--color-bg-hover:  #202020;
+	--color-bg-code:   #363636;
+	--color-text:      #c4c4c4;
+	--color-accent:    #24d35e;
+	--color-link:      #0066cc;
+	--color-bold:      #B92C25;
+	--color-gray:      gray;
+	--color-border:    gray;
+
+	--font-serif:      "Noto Serif", serif;
+	--font-sans:       "Noto Sans", sans-serif;
+	--font-crimson:    'Crimson Pro', serif;
+	--font-mono:       'Roboto Mono', monospace;
+
+	--space-xs:  0.5rem;
+	--space-sm:  1rem;
+	--space-md:  2rem;
+	--space-lg:  3rem;
+	--space-xl:  5rem;
+
+	--radius-sm: 0.3rem;
+	--radius-lg: 3rem;
+
+	--border-caution: 5px solid red;
+	--border-util:    5px solid var(--color-border);
+	--border-post:    2px solid var(--color-text);
+}
+
+/* ─── Reset & Base ──────────────────────────────────────────────── */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
 
 html {
-	position: relative;
 	min-height: 100%;
-	background-color: #151515;
-	text-align: right;
-	padding: 0px;
-	margin: 50px 50px;
+	background-color: var(--color-bg);
 	scroll-behavior: smooth;
-}
-header {
-	margin: 100px 110px 0px;
-	border-radius: 50px;
-	padding: 0%;
+	/* Replaced fixed margins with padding so mobile doesn't overflow */
+	padding: 0 clamp(1rem, 5vw, 3rem);
 }
 
 body {
+	margin: 0 auto;
+	max-width: 1200px;
 	text-align: justify;
-	color: #c4c4c4;
+	color: var(--color-text);
 }
 
-article {
-	margin: 35px 0px 0px 0px;
-	font-size: 18px;
-	padding: 25px;
-}
-#thumb {
-	width: 25%;
-	border-radius: 05%;
-	margin-top: 04%;
-	float: center;
-}
-hr {
-	width: 50%;
-	color: #24d35e;
-	margin: 0% 0% 0% 5%;
-}
-
+/* ─── Typography ────────────────────────────────────────────────── */
 h1 {
-	font-family: "Noto Sans",sans-serif;
-	font-size: 250%;
-	color: #24d35e;
-	margin: 0% 0% 1% -3.5%;
+	font-family: var(--font-sans);
+	font-size: clamp(1.8rem, 5vw, 2.5rem);
+	color: var(--color-accent);
+	margin: 0 0 1% 0;
 }
 
 h2 {
-	/*font-family: 'Roboto Mono', monospace;*/
-	font-family: "Noto Serif",serif;
-	font-size: 180%;
-	color: #24d35e;
+	font-family: var(--font-serif);
+	font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+	color: var(--color-accent);
 }
+
 h3 {
-	font-family: "Noto Serif",serif;
-	color: #24d35e;
+	font-family: var(--font-serif);
+	color: var(--color-accent);
 }
 
 h4 {
-	/*	font-family: 'Roboto Mono', monospace;;*/
-	font-family: "Noto Serif",serif;
-	font-size: 110%;
+	font-family: var(--font-serif);
+	font-size: 1.1rem;
 }
+
 h5 {
-	/*	font-family: 'Roboto Mono', monospace;*/
-	font-family: "Noto Serif",serif;
-	font-size: 150%;
-	color: #24d35e;
+	font-family: var(--font-serif);
+	font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+	color: var(--color-accent);
 }
-footer {
-	padding-top: 0px;
-	margin: 0% 0% 0% 1%;
+
+p {
+	font-family: var(--font-crimson);
+	font-size: clamp(1.1rem, 2.5vw, 1.4rem);
 }
-#ctt {
-	padding-left: 18px;
-	text-align: left;	
+
+b {
+	color: var(--color-bold);
 }
-#gentoo {
-	width: 50px;
+
+code {
+	background-color: var(--color-bg-code);
+	padding: 0.1em 0.4em;
+	border-radius: var(--radius-sm);
+	font-family: var(--font-mono);
+	font-size: 0.9em;
 }
-button { 
-	background-color: #4CAF50; /* Green */
-	border: none;
-	padding: 15px 32px;
-	text-align: center;
+
+/* ─── Links ─────────────────────────────────────────────────────── */
+a {
+	color: var(--color-link);
+	font-family: var(--font-crimson);
+	font-size: clamp(1rem, 2.5vw, 1.4rem);
 	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-left: 10px;
-	color: black;
 }
-a{
-	color: #0066cc;
-	font-family: 'Crimson Pro', serif;
-	font-size: 140%;
-	text-decoration: none; 
-}
+
 a:hover {
-	color: #FFFFFF;
-	background-color: #0066cc;
+	color: #ffffff;
+	background-color: var(--color-link);
 	text-decoration: underline;
 }
-#button-left {
+
+/* ─── Header ────────────────────────────────────────────────────── */
+header {
+	margin: clamp(2rem, 8vw, 6rem) 0 0;
+	border-radius: var(--radius-lg);
+	padding: 0;
+}
+
+/* ─── Navigation ────────────────────────────────────────────────── */
+nav {
+	overflow: hidden;
+	margin: -8px 0 0;
+	padding: 0;
+}
+
+nav a {
+	color: var(--color-link);
 	float: right;
-}
-.bsd1 {
+	padding: 10px 10px 13px;
+	text-decoration: none;
+	font-size: 1.1rem;
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
 }
+
+nav li {
+	text-align: left;
+}
+
 #navbarul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	display: block;
 }
-nav {
-	overflow: hidden;
-	padding: 0px 0px 0px 0px;
-	margin: -8px;
-}
-nav a {
-	color: #0066cc;
-	float: right;
-	padding: 10px 10px 13px;
-	text-decoration: none;
-	font-size: 17px;
-	display: block;
-}
-nav li {
-	text-align: left;
-}
 
-#main-content {
-}
-
-#link-to-main {
-	position: absolute;
-	transform: translateY(-10%);
-	text-align: right;
-}
+/* ─── Main & Article ────────────────────────────────────────────── */
 main {
-	padding: 0% 5%;
+	padding: 0 clamp(1rem, 5vw, 5%);
 }
-#util {
-	width: 60%;
-	padding: 1% 5% 10% 2%;
-	border: 5px solid gray;
-	margin: 10%;
+
+article {
+	margin-top: var(--space-md);
+	font-size: 1.1rem;
+	padding: var(--space-sm) clamp(0.5rem, 3vw, 1.5rem);
 }
-#mint-logo {
+
+/* ─── HR ─────────────────────────────────────────────────────────── */
+hr {
 	width: 50%;
+	color: var(--color-accent);
+	margin: 0 0 0 5%;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────── */
+footer {
+	padding-top: 0;
+	margin: 0 0 0 1%;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────── */
+button {
+	background-color: #4CAF50;
+	border: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1rem;
+	margin-left: 10px;
+	color: black;
+	cursor: pointer;
+	border-radius: var(--radius-sm);
+}
+
+#button-left {
+	float: right;
+}
+
+/* ─── Images ─────────────────────────────────────────────────────── */
+#thumb {
+	width: clamp(120px, 25%, 280px);
+	border-radius: 5%;
+	margin-top: 4%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#gentoo {
+	width: 50px;
+}
+
+#mint-logo {
+	width: clamp(40%, 50%, 80%);
 	transform: translateY(-50%);
 }
-#tut {
-	margin: 05%;
-	width: 90%;
-}
-#caution {
-	width: 60%;
-	padding: 1% 5% 2% 2%;
-	border: 5px solid red;
-	margin: 10%;
+
+#gpt {
+	margin: 10% 0;
+	width: clamp(60%, 40%, 90%);
 }
 
-#intro {
-	transform: translateY(-5%);
+.bsd1 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: clamp(60%, 50%, 100%);
 }
-#tabela {
-	width: 10% 20%;
-	padding: 0% 30% 1% 1%;
-	border: 1px solid grey;
-	margin: 4% 20%;
-	transform: translateY(-5%);
-	justify-content: center;
-}
-code {
-	background-color: #363636;
-	padding: 0% 1%;
-}
-#gpt {
-	margin: 15% 0%;
-	width: 40%;
-}
-#menu {
-	transform: translateX(3%);
-}
+
+/* ─── Image Grid ─────────────────────────────────────────────────── */
 .image-grid {
 	--gap: 16px;
 	--num-cols: 2;
 	--row-height: 300px;
+
 	box-sizing: border-box;
 	padding: var(--gap);
 	display: grid;
@@ -198,31 +234,170 @@ code {
 	grid-auto-rows: var(--row-height);
 	gap: var(--gap);
 }
-.image-grid > img{
+
+.image-grid > img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
+
+/* ─── Utility Blocks ─────────────────────────────────────────────── */
+#util {
+	width: clamp(280px, 60%, 700px);
+	padding: 1% 5% 10% 2%;
+	border: var(--border-util);
+	margin: 5% auto;
+}
+
+#caution {
+	width: clamp(280px, 60%, 700px);
+	padding: 1% 5% 2% 2%;
+	border: var(--border-caution);
+	margin: 5% auto;
+}
+
+#tut {
+	margin: 5%;
+	width: 90%;
+}
+
+#tabela {
+	padding: 0 5% 1% 1%;
+	border: 1px solid var(--color-border);
+	margin: 4% auto;
+	justify-content: center;
+}
+
+/* ─── Posts ──────────────────────────────────────────────────────── */
 #postagem {
-	border: 2px solid;
+	border: var(--border-post);
 	padding: 10px;
 	margin: 15px;
+	border-radius: var(--radius-sm);
+	transition: background-color 0.2s ease;
 }
+
 #postagem:hover {
-	background-color: #202020;
+	background-color: var(--color-bg-hover);
 }
+
 #p-list {
 	list-style-type: none;
+	padding: 0;
 }
+
 #date {
-	color: gray;
+	color: var(--color-gray);
 }
-#site-title {
+
+/* ─── Misc IDs ───────────────────────────────────────────────────── */
+#ctt {
+	padding-left: 18px;
+	text-align: left;
 }
-p {
-    font-family: 'Crimson Pro', serif;
-	font-size: 140%;
+
+#intro {
+	transform: translateY(-5%);
 }
-b{
-	color: #B92C25;
+
+#link-to-main {
+	position: absolute;
+	transform: translateY(-10%);
+	text-align: right;
+}
+
+#menu {
+	transform: translateX(3%);
+}
+
+/* ─── Responsive: Tablet (≤ 768px) ──────────────────────────────── */
+@media (max-width: 768px) {
+	html {
+		padding: 0 var(--space-sm);
+	}
+
+	header {
+		margin-top: var(--space-md);
+		border-radius: var(--radius-sm);
+	}
+
+	nav a {
+		float: none;
+		display: block;
+		text-align: right;
+		padding: 8px 10px;
+	}
+
+	main {
+		padding: 0 var(--space-xs);
+	}
+
+	.image-grid {
+		--num-cols: 1;
+		--row-height: 220px;
+	}
+
+	#util,
+	#caution {
+		width: 100%;
+		margin: var(--space-md) 0;
+		padding: var(--space-sm);
+	}
+
+	#tabela {
+		margin: var(--space-md) 0;
+		padding: var(--space-sm);
+	}
+
+	#thumb {
+		width: clamp(100px, 50%, 200px);
+	}
+
+	#gpt {
+		width: 80%;
+		margin: var(--space-md) auto;
+	}
+
+	.bsd1 {
+		width: 90%;
+	}
+
+	#mint-logo {
+		width: 80%;
+		transform: none;
+	}
+
+	#tut {
+		margin: var(--space-sm);
+		width: 100%;
+	}
+
+	h1 {
+		margin-left: 0;
+	}
+}
+
+/* ─── Responsive: Mobile (≤ 480px) ──────────────────────────────── */
+@media (max-width: 480px) {
+	body {
+		text-align: left; /* justify can be hard to read on very narrow screens */
+	}
+
+	article {
+		padding: var(--space-xs);
+	}
+
+	button {
+		width: 100%;
+		margin: var(--space-xs) 0;
+	}
+
+	#postagem {
+		margin: 8px 0;
+	}
+
+	hr {
+		width: 80%;
+		margin: 0 auto;
+	}
 }
